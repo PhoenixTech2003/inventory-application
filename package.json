@@ -1,0 +1,20 @@
+{
+  "name": "inventory-application",
+  "version": "1.0.0",
+  "description": "This is an inventory site implemented using express js MVC pattern",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PhoenixTech2003/inventory-application.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PhoenixTech2003/inventory-application/issues"
+  },
+  "homepage": "https://github.com/PhoenixTech2003/inventory-application#readme"
+}
