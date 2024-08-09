@@ -14,4 +14,9 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 
+
+app.use((err,res,req)=>{
+    res.send('hello there is an error',)
+})
+
 app.listen(PORT, () => console.log(`Express App listening on port http://localhost:${PORT}`));
