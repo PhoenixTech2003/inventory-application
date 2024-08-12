@@ -8,10 +8,37 @@
 </head>
 <body class="bg-[#0d1011] h-dvh">
     <main class="grid grid-rows-[2fr_0.1fr] md:grid-cols-[0.2fr_1fr] h-dvh">
-        <section class="grid  row-start-2 md:row-start-1 md:col-start-1">
+        <section class="grid  row-start-2 md:row-start-1 md:col-start-1 row-span-full">
             <%- include("partials/nav") %>
         </section>
-        <section class="overflow-y-scroll"> hjghg</section>
+        <section class="overflow-y-scroll text-white p-2">
+            <h1 class="text-2xl font-medium p-2 mt-10 md:text-center"><%= title %></h1>
+        
+            <% categories.forEach((category)=>{%>
+                <div class="bg-[#151718] flex p-4 justify-between mt-4 items-center">
+                    
+                    <h1 class="  rounded-md text-2xl font-bold ">
+                        <%= category.category_name %>
+
+                    </h1>
+                    <div class="flex items-center gap-4">
+
+                        <form action="">
+                            <button>
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" id="ecology"><g transform="translate(0 -1004.362)"><circle cx="24" cy="1028.362" r="24" fill="#ffa40b" fill-rule="evenodd"></circle><path fill="#fff" d="M20 1014.862a.5.5 0 0 0-.5.5v2.9a.5.5 0 0 0 .008.1H13.5c-.277 0-.5.224-.5.5v3c0 .278.223.5.5.5h21c.277 0 .5-.222.5-.5v-3c0-.276-.223-.5-.5-.5h-6.01a.5.5 0 0 0 .01-.1v-2.9a.5.5 0 0 0-.5-.5h-8zm.5 1h7v2.4a.5.5 0 0 0 .008.1H20.49a.5.5 0 0 0 .01-.1v-2.4zm-5.5 7.5v17.5c0 .831.669 1.5 1.5 1.5h15c.831 0 1.5-.669 1.5-1.5v-17.5H15zm4 2c.554 0 1 .446 1 1v12c0 .554-.446 1-1 1s-1-.446-1-1v-12c0-.554.446-1 1-1zm5 0c.554 0 1 .446 1 1v12c0 .554-.446 1-1 1s-1-.446-1-1v-12c0-.554.446-1 1-1zm5 0c.554 0 1 .446 1 1v12c0 .554-.446 1-1 1s-1-.446-1-1v-12c0-.554.446-1 1-1z"></path></g></svg>
+                            </button>
+                        </form>
+                        <form action="">
+                            <button>
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" id="pen"><circle cx="24" cy="24" r="24" fill="#ffa40b" fill-rule="evenodd"></circle><path fill="#fff" d="M32.178 13.908a.499.499 0 0 0-.354.147l-1.06 1.06a.5.5 0 0 0-.708 0L15.914 29.258c-.026.026-.04.06-.059.09-.009.015-.025.023-.033.039l-1.416 2.828a.5.5 0 0 0 .094.578l-.354.353a.5.5 0 1 0 .71.708l.353-.354a.497.497 0 0 0 .578.092l2.828-1.414c.017-.008.026-.025.041-.035.03-.02.063-.033.09-.059l13.078-13.08.355.353a.5.5 0 0 1 0 .707l-4.95 4.95a.5.5 0 1 0 .708.707l4.95-4.95a1.501 1.501 0 0 0 0-2.12l-.354-.354.353-.356a.499.499 0 0 0 0-.707l1.061-1.06a.498.498 0 0 0-.002-.705l-1.414-1.414a.499.499 0 0 0-.354-.147zm0 1.205.707.707-.706.707-.355-.353-.354-.354.708-.707zm-1.768 1.063 1.416 1.414-.354.353-1.533 1.534-2.357-.471 2.828-2.83zm-3.68 3.68 2.356.47-.563.565-2.357-.471.564-.565zm-1.414 1.414 2.358.47-.565.567-2.357-.471.564-.566zm-1.414 1.414 2.358.47-7.87 7.87-.707-.708-.707-.707 6.926-6.925zm-7.496 7.771.57.57.569.57-1.885.942-.197-.197.943-1.885z"></path></svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            <%}) %>
+        </section>
     </main>
 </body>
 </html>
