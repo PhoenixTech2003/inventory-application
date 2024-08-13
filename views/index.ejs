@@ -15,7 +15,7 @@
             <h1 class="text-2xl font-medium p-2 mt-10 md:text-center"><%= title %></h1>
         
             <% categories.forEach((category)=>{%>
-                <a href="/items/<%= category.id %>" class="bg-[#151718] flex p-4 justify-between mt-4 items-center">
+                <a href="/items/<%= category.category_name %>" class="bg-[#151718] flex p-4 justify-between mt-4 items-center">
                     
                     <h1 class="  rounded-md text-2xl font-bold ">
                         <%= category.category_name %>
