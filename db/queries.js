@@ -2,15 +2,15 @@ const pool = require("./pool");
 
 async function getAllCategories() {
   const categories = await pool.query(
-    "SELECT DISTINCT id, category_name FROM categories",
+    "SELECT DISTINCT category_name FROM categories",
   );
   return categories.rows;
 }
 
-async function getAllItemsForCategory(id) {
+async function getAllItemsForCategory(categoryName) {
   const items = await pool.query(
-    "SELECT product_name , quantity, category_name FROM product join categories on product.id = categories.id WHERE categories.id = $1;",
-    [id],
+    "SELECT product_name , quantity, category_name FROM product join categories on product.id = categories.id WHERE categories.category_name = $1;",
+    [categoryName],
   );
 
   return items.rows;
@@ -30,11 +30,11 @@ async function postItem(name, quantity, category) {
     "INSERT INTO categories (category_name, product_id) VALUES ($1, $2)",
     [category, itemId],
   );
-  const categoryId = await pool.query(
-    "SELECT id FROM categories WHERE product_id = $1",
+  const categoryName = await pool.query(
+    "SELECT category_name FROM categories WHERE product_id = $1",
     [itemId],
   );
-  return categoryId.rows[0].id;
+  return categoryName.rows[0].category_name;
 }
 
 module.exports = {
