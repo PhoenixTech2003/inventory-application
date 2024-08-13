@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS product(
 
 CREATE TABLE IF NOT EXISTS categories (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    category_name VARCHAR(255) UNIQUE,
+    category_name VARCHAR(255),
     product_id INTEGER,
     FOREIGN KEY (product_id) REFERENCES product(id)
 );
@@ -29,12 +29,10 @@ INSERT INTO product ("product_name", "quantity")
     ON CONFLICT (product_name) DO NOTHING;
 
 INSERT INTO categories (category_name, product_id)
-    VALUES ('snacks', 1)
-    ON CONFLICT (category_name) DO NOTHING;
+    VALUES ('snacks', 1);
 
 INSERT INTO categories (category_name, product_id)
-    VALUES ('Cars', 2)
-    ON CONFLICT (category_name) DO NOTHING;
+    VALUES ('Cars', 2);
 
 `;
 
