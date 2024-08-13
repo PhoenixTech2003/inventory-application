@@ -33,7 +33,7 @@ INSERT INTO categories (category_name, product_id)
     ON CONFLICT (category_name) DO NOTHING;
 
 INSERT INTO categories (category_name, product_id)
-    VALUES ('Cars', 9)
+    VALUES ('Cars', 2)
     ON CONFLICT (category_name) DO NOTHING;
 
 `;
