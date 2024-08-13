@@ -16,7 +16,13 @@ async function getAllItemsForCategory(id) {
   return items.rows;
 }
 
+async function postItem(name, quantity) {
+    await pool.query("INSERT INTO product(product_name, quantity) VALUES ($1, $2)", [name, quantity]);
+    return "Success"
+}
+
 module.exports = {
   getAllCategories,
-  getAllItemsForCategory
+  getAllItemsForCategory,
+  postItem
 };
