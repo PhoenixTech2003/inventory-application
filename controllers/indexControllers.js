@@ -7,8 +7,8 @@ exports.renderIndex = asyncHandler(async (req, res) => {
 });
 
 exports.renderItems =asyncHandler(async(req, res)=>{
-  const id = req.params.id;
-  const items = await db.getAllItemsForCategory(id);
+  const category = req.params.category;
+  const items = await db.getAllItemsForCategory(category);
   const categoryName = items[0].category_name
   res.render("items",{title:categoryName,items:items} )
 })
