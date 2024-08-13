@@ -1,0 +1,7 @@
+<% if(locals.errors){ %>
+    <ul class="bg-red-400 p-4 border-4 mt-2">
+        <% errors.forEach((error)=>{ %>
+            <li class="font-medium"> <%= error.msg %></li>
+       <% }) %>
+    </ul>
+<%  }%>
