@@ -1,9 +1,9 @@
-const {Router} = require("express")
-const controller = require("../controllers/addCategoryController")
+const { Router } = require("express");
+const controller = require("../controllers/addCategoryController");
 
-const addCategoryRouter = Router()
+const addCategoryRouter = Router();
 
-addCategoryRouter.get("/", controller.renderAddCategories)
-addCategoryRouter.post("/", controller.addCategories)
+addCategoryRouter.get("/", controller.renderAddCategories);
+addCategoryRouter.post("/", controller.addCategories);
 
-module.exports = addCategoryRouter
+module.exports = addCategoryRouter;
