@@ -18,11 +18,16 @@ exports.addCategories = [
   asyncHandler(async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      res.status(400).render("addCategory", {title: "Add Category", errors: errors.array() });
+      res
+        .status(400)
+        .render("addCategory", {
+          title: "Add Category",
+          errors: errors.array(),
+        });
       return;
     }
     const { category_name } = req.body;
     await db.createCategory(category_name);
-    res.redirect("/")
+    res.redirect("/");
   }),
 ];
