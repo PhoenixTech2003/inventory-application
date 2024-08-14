@@ -9,7 +9,7 @@ async function getAllCategories() {
 
 async function getAllItemsForCategory(categoryName) {
   const items = await pool.query(
-    "SELECT product_name , quantity, category_name FROM product join categories on product.id = categories.id WHERE categories.category_name = $1;",
+    "SELECT product_name , quantity, category_name FROM product join categories on product.category_id = categories.id WHERE categories.category_name = $1;",
     [categoryName],
   );
 
@@ -17,28 +17,29 @@ async function getAllItemsForCategory(categoryName) {
 }
 
 async function postItem(name, quantity, category) {
+  const categoryRow = await pool.query(
+    "SELECT id, category_name FROM categories WHERE category_name = $1",
+    [category],
+  );
+
+  const categoryId = categoryRow.rows[0].id;
   await pool.query(
-    "INSERT INTO product(product_name, quantity) VALUES ($1, $2)",
-    [name, quantity],
+    "INSERT INTO product(product_name, quantity, category_id) VALUES ($1, $2, $3)",
+    [name, quantity, categoryId],
   );
-  const itemIdRow = await pool.query(
-    "SELECT id FROM product WHERE product_name = $1",
-    [name],
-  );
-  const itemId = itemIdRow.rows[0].id;
-  await pool.query(
-    "INSERT INTO categories (category_name, product_id) VALUES ($1, $2)",
-    [category, itemId],
-  );
-  const categoryName = await pool.query(
-    "SELECT category_name FROM categories WHERE product_id = $1",
-    [itemId],
-  );
-  return categoryName.rows[0].category_name;
+ 
+  
+  return categoryRow.rows[0].category_name;
+}
+
+async function createCategory(name) {
+  await pool.query("INSERT INTO categories (category_name) VALUES ($1)",[name])
+  
 }
 
 module.exports = {
   getAllCategories,
   getAllItemsForCategory,
   postItem,
+  createCategory
 };
