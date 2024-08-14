@@ -1,17 +1,17 @@
 const pool = require('./pool');
 
 const SQL = `
-CREATE TABLE IF NOT EXISTS product(
-    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    product_name VARCHAR(255) UNIQUE,
-    quantity INTEGER
-);
-
 CREATE TABLE IF NOT EXISTS categories (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    category_name VARCHAR(255),
-    product_id INTEGER,
-    FOREIGN KEY (product_id) REFERENCES product(id)
+    category_name VARCHAR(255) UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS product (
+    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    category_id INTEGER,
+    product_name VARCHAR(255) UNIQUE,
+    quantity INTEGER,
+    FOREIGN KEY (category_id) REFERENCES categories(id)
 );
 
 CREATE TABLE IF NOT EXISTS users (
@@ -20,19 +20,20 @@ CREATE TABLE IF NOT EXISTS users (
     password VARCHAR(255)
 );
 
-INSERT INTO product ("product_name", "quantity")
-    VALUES ('biscuits', 2)
+INSERT INTO categories (category_name)
+    VALUES ('Snacks');
+
+INSERT INTO categories (category_name)
+    VALUES ('Cars');
+
+INSERT INTO product (product_name, quantity, category_id)
+    VALUES ('biscuits', 2, 1)
     ON CONFLICT (product_name) DO NOTHING;
 
-INSERT INTO product ("product_name", "quantity")
-    VALUES ('Mercedes Benz C200', 4)
+INSERT INTO product (product_name, quantity, category_id)
+    VALUES ('Mercedes Benz C200', 4, 2)
     ON CONFLICT (product_name) DO NOTHING;
 
-INSERT INTO categories (category_name, product_id)
-    VALUES ('snacks', 1);
-
-INSERT INTO categories (category_name, product_id)
-    VALUES ('Cars', 2);
 
 `;
 
