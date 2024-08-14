@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS product (
     category_id INTEGER,
     product_name VARCHAR(255) UNIQUE,
     quantity INTEGER,
-    FOREIGN KEY (category_id) REFERENCES categories(id)
+    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS users (

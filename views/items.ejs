@@ -25,9 +25,11 @@
                     </div>
                     <div class="flex items-center gap-4">
 
-                        <form action="">
-                            <button>
-
+                        <form method="POST" action="/items/<%= title %>">
+                            <input class="hidden" name="product_name" value="<%= item.product_name %>" type="text">
+                            <input class="hidden" name="category_name" value="<%= title %>" type="text">
+                            <button type="submit">
+                                
                                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" id="ecology"><g transform="translate(0 -1004.362)"><circle cx="24" cy="1028.362" r="24" fill="#ffa40b" fill-rule="evenodd"></circle><path fill="#fff" d="M20 1014.862a.5.5 0 0 0-.5.5v2.9a.5.5 0 0 0 .008.1H13.5c-.277 0-.5.224-.5.5v3c0 .278.223.5.5.5h21c.277 0 .5-.222.5-.5v-3c0-.276-.223-.5-.5-.5h-6.01a.5.5 0 0 0 .01-.1v-2.9a.5.5 0 0 0-.5-.5h-8zm.5 1h7v2.4a.5.5 0 0 0 .008.1H20.49a.5.5 0 0 0 .01-.1v-2.4zm-5.5 7.5v17.5c0 .831.669 1.5 1.5 1.5h15c.831 0 1.5-.669 1.5-1.5v-17.5H15zm4 2c.554 0 1 .446 1 1v12c0 .554-.446 1-1 1s-1-.446-1-1v-12c0-.554.446-1 1-1zm5 0c.554 0 1 .446 1 1v12c0 .554-.446 1-1 1s-1-.446-1-1v-12c0-.554.446-1 1-1zm5 0c.554 0 1 .446 1 1v12c0 .554-.446 1-1 1s-1-.446-1-1v-12c0-.554.446-1 1-1z"></path></g></svg>
                             </button>
                         </form>

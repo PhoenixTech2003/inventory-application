@@ -37,9 +37,20 @@ async function createCategory(name) {
   
 }
 
+async function deleteItem(itemName) {
+  await pool.query("DELETE FROM product WHERE product_name = $1",[itemName])
+  
+}
+
+async function deleteCategory(categoryName) {
+  await pool.query("DELETE FROM categories WHERE category_name = $1",[categoryName])
+}
+
 module.exports = {
   getAllCategories,
   getAllItemsForCategory,
   postItem,
-  createCategory
+  createCategory,
+  deleteItem,
+  deleteCategory
 };

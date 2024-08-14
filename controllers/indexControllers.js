@@ -19,3 +19,16 @@ exports.renderItems = asyncHandler(async (req, res) => {
 
   res.render("items", { title: categoryName, items: items });
 });
+
+exports.deleteItem = asyncHandler(async(req, res)=>{
+  const itemName = req.body.product_name;
+  const categoryName = req.body.category_name;
+  await db.deleteItem(itemName)
+  res.redirect(`/items/${categoryName}`)
+})
+
+exports.deleteCategory = asyncHandler(async(req,res)=>{
+  const categoryName = req.body.category_name;
+  await db.deleteCategory(categoryName)
+  res.redirect("/")
+})
