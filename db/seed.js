@@ -1,4 +1,4 @@
-const pool = require('./pool');
+const pool = require("./pool");
 
 const SQL = `
 CREATE TABLE IF NOT EXISTS categories (
@@ -37,18 +37,16 @@ INSERT INTO product (product_name, quantity, category_id)
 
 `;
 
-
-
 async function main() {
-    try {
-        console.log("seeding.....");
-        await pool.query(SQL);
-        console.log("seeding complete");
-    } catch (error) {
-        console.error("An error occurred while seeding the database", error);
-    } finally {
-        pool.end();
-    }
+  try {
+    console.log("seeding.....");
+    await pool.query(SQL);
+    console.log("seeding complete");
+  } catch (error) {
+    console.error("An error occurred while seeding the database", error);
+  } finally {
+    pool.end();
+  }
 }
 
 main();
