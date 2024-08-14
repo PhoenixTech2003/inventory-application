@@ -27,27 +27,48 @@ async function postItem(name, quantity, category) {
     "INSERT INTO product(product_name, quantity, category_id) VALUES ($1, $2, $3)",
     [name, quantity, categoryId],
   );
- 
-  
+
   return categoryRow.rows[0].category_name;
 }
 
 async function createCategory(name) {
-  await pool.query("INSERT INTO categories (category_name) VALUES ($1)",[name])
-  
+  await pool.query("INSERT INTO categories (category_name) VALUES ($1)", [
+    name,
+  ]);
 }
 
 async function deleteItem(itemName) {
-  await pool.query("DELETE FROM product WHERE product_name = $1",[itemName])
-  
+  await pool.query("DELETE FROM product WHERE product_name = $1", [itemName]);
 }
 
 async function deleteCategory(categoryName) {
-  await pool.query("DELETE FROM categories WHERE category_name = $1",[categoryName])
+  await pool.query("DELETE FROM categories WHERE category_name = $1", [
+    categoryName,
+  ]);
 }
 
 async function updateCategory(categoryName, currentCategoryName) {
-  await pool.query("UPDATE categories SET category_name = $1 WHERE category_name = $2",[categoryName, currentCategoryName])
+  await pool.query(
+    "UPDATE categories SET category_name = $1 WHERE category_name = $2",
+    [categoryName, currentCategoryName],
+  );
+}
+
+async function updateItem(
+  productName,
+  quantity,
+  currentItemName,
+  newCategoryName,
+) {
+  const categoryRow = await pool.query(
+    "SELECT id FROM categories WHERE category_name = $1 ",
+    [newCategoryName],
+  );
+  const categoryId = categoryRow.rows[0].id;
+  await pool.query(
+    "UPDATE product SET product_name = $1, quantity = $2, category_id = $3 WHERE  product_name = $4",
+    [productName, quantity, categoryId, currentItemName],
+  );
 }
 
 module.exports = {
@@ -57,5 +78,6 @@ module.exports = {
   createCategory,
   deleteItem,
   deleteCategory,
-  updateCategory
+  updateCategory,
+  updateItem,
 };
