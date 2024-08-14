@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./output.css">
+    <title><%= title %></title>
+</head>
+<body class="bg-[#0d1011] h-dvh">
+    <main class="grid grid-rows-[2fr_0.1fr] md:grid-cols-[0.2fr_1fr] h-dvh">
+        <section class="grid  row-start-2 md:row-start-1 md:col-start-1 row-span-full">
+            <%- include("partials/nav") %>
+        </section>
+        <section class="overflow-y-scroll text-white p-2">
+            <h1 class="text-2xl font-medium p-2 mt-10 md:text-center"><%= title %></h1>
+            <form class="grid gap-4" method="POST" action="/update-item">
+                <label for="name">Proudct Name</label>
+                <input class="text-black p-2 rounded-md" name="product_name" type="text">
+                <label for="">Quantity</label>
+                <input class="text-black p-2 rounded-md" name="quantity" type="number">
+                <label for="category">Category</label>
+                <select class="text-black p-2 rounded-md" name="category" id="category">
+                    <option value="" disabled selected>Select a category</option>
+                     <% categories.forEach(category => { %>
+                        <option value="<%= category.category_name %>"><%= category.category_name %></option>
+                     <% }) %>
+                </select>
+                <input class="hidden" name="current_item_name" value="<%= itemName %>" type="text">
+        
+                <button type="submit" class="py-2 px-4 justify-self-center rounded-md bg-orange-500 font-extrabold">Update Item</button>
+            </form>
+            <%- include('partials/error') %>
+        </section>
+    </main>
+</body>
+</html>
